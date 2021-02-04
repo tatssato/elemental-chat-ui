@@ -6,7 +6,7 @@
           id="channel-name"
           v-if="showEmptyMessage"
           v-model="actionChannel.info.name"
-          label="Channel Name"
+          label="チャンネル名"
           dense
           outlined
           autofocus

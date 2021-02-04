@@ -2,12 +2,13 @@
   <div>
     <v-app-bar app dense dark tile elevation="5">
       <v-toolbar-title class="title pl-0"
-        >Elemental Chat {{ channel.info.name ? "- " + channel.info.name : "" }}
+        >テストチャットアプリ
+        {{ channel.info.name ? "- " + channel.info.name : "" }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-title v-if="isHoloSignedIn" @click="holoLogout" class="logout">
-        Logout
+        ログアウト
       </v-toolbar-title>
 
       <v-toolbar-title class="title pl-0">
@@ -25,7 +26,7 @@
               <v-icon>mdi-account-cog</v-icon>
             </v-btn>
           </template>
-          <span>Update user handle</span>
+          <span>ユーザーネームの更新</span>
         </v-tooltip>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -41,7 +42,7 @@
               <v-icon>mdi-chart-line</v-icon>
             </v-btn>
           </template>
-          <span>View Stats</span>
+          <span>統計を見る</span>
         </v-tooltip>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -56,7 +57,7 @@
               <v-icon>mdi-information-outline</v-icon>
             </v-btn>
           </template>
-          <div v-if="!appInterface">Loading Version Info...</div>
+          <div v-if="!appInterface">バージョン情報を読み込んでいます...</div>
           <div v-if="appInterface">UI: {{ appInterface.appVersion }}</div>
           <div v-if="appInterface">DNA: {{ appInterface.appId }}</div>
         </v-tooltip>
@@ -66,7 +67,7 @@
       <v-row no-gutters height="100%">
         <v-col cols="5" md="3">
           <v-toolbar dense dark tile class="mb-1">
-            <v-toolbar-title>Channels</v-toolbar-title>
+            <v-toolbar-title>チャンネル一覧</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
@@ -82,7 +83,7 @@
                   <v-icon>mdi-refresh</v-icon>
                 </v-btn>
               </template>
-              <span>Check for new channels</span>
+              <span>チャンネル一覧を更新する</span>
             </v-tooltip>
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
@@ -98,7 +99,7 @@
                   <v-icon>mdi-chat-plus-outline</v-icon>
                 </v-btn>
               </template>
-              <span>Add a public Channel.</span>
+              <span>新しいチャンネルを作る</span>
             </v-tooltip>
           </v-toolbar>
           <channels
@@ -118,13 +119,15 @@
     <v-dialog v-model="shouldDisplayStats" persistent max-width="660">
       <v-card>
         <v-card-title class="headline">
-          Stats
+          統計
         </v-card-title>
-        <v-card-text v-if="statsAreLoading">Loading stats...</v-card-text>
+        <v-card-text v-if="statsAreLoading"
+          >統計を読み込んでいます...</v-card-text
+        >
         <v-card-text v-if="!statsAreLoading">
           <v-row align="center">
             <v-col class="display-1" cols="6">
-              Total peers:
+              ユーザー数:
             </v-col>
             <v-col class="display-1" cols="6">
               {{ stats.agents == undefined ? "--" : stats.agents }} 👤
@@ -132,7 +135,7 @@
           </v-row>
           <v-row align="center">
             <v-col class="display-1" cols="6">
-              Active peers:
+              オンラインユーザー数:
             </v-col>
             <v-col class="display-1" cols="6">
               {{ stats.active == undefined ? "--" : stats.active }} 👤
@@ -140,7 +143,7 @@
           </v-row>
           <v-row align="center">
             <v-col class="display-1" cols="6">
-              Channels:
+              チャンネル数:
             </v-col>
             <v-col class="display-1" cols="6">
               {{ stats.channels == undefined ? "--" : stats.channels }} 🗨️
@@ -148,7 +151,7 @@
           </v-row>
           <v-row align="center">
             <v-col class="display-1" cols="6">
-              Messages:
+              メッセージ数:
             </v-col>
             <v-col class="display-1" cols="6">
               {{ stats.messages == undefined ? "--" : stats.messages }} 🗨️
@@ -158,7 +161,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text @click="resetStats">
-            Close
+            閉じる
           </v-btn>
         </v-card-actions>
       </v-card>

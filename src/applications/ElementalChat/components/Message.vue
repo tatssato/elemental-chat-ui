@@ -16,7 +16,7 @@
     v-else
     class="ml-0 mr-0"
     v-model="content"
-    label="Send a message"
+    label="メッセージを送信する"
     maxlength="1000"
     dense
     dark
@@ -56,7 +56,7 @@ export default {
       };
       if (!this.channels.length) {
         this.diplayErrorMessage({
-          message: "You must first create a channel before sending a message.",
+          message: "メッセージを送信するにはまずチャンネルを作成してください",
           shouldShow: true
         });
         // refresh error msg setting after 5sec

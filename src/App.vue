@@ -5,17 +5,16 @@
       <v-dialog v-model="shouldDisplayNickPrompt" persistent max-width="320">
         <v-card>
           <v-card-title class="headline">
-            Tell us your nick name 😎
+            ユーザーネームを設定してください
           </v-card-title>
           <v-card-text
-            >As a super simple way to see who wrote a message your nick name or
-            handle will be prepended to your messages.</v-card-text
+            >誰がメッセージを書いたかを簡易的に明確にするために、ユーザーネームがメッセージに付随されます。</v-card-text
           >
           <v-card-text>
             <v-text-field
               v-model="internalAgentHandle"
-              label="Enter your handle"
-              hint="This will be added to your messages"
+              label="ユーザーネーム"
+              hint="こちらはメッセージに付随されます"
               maxlength="20"
               dark
               outlined
@@ -28,7 +27,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn text @click="agentHandleEntered">
-              Let's Go
+              完了
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -40,7 +39,7 @@
       >
         <v-card>
           <v-card-title class="headline">
-            Connecting to HoloPort
+            HoloPortに接続しています...
           </v-card-title>
           <v-card-text>{{ holoConnectionMessage }}</v-card-text>
         </v-card>
@@ -48,7 +47,7 @@
       <v-dialog v-model="error.shouldShow" persistent max-width="460">
         <v-card>
           <v-card-title class="headline">
-            Hm... Something doesn't look right.
+            エラーが発生しました。
           </v-card-title>
           <v-card-text>{{ error.message }}</v-card-text>
           <v-card-actions>
@@ -62,19 +61,19 @@
       <v-dialog v-model="shouldDisplayDisconnected" persistent max-width="460">
         <v-card>
           <v-card-title class="headline">
-            Establishing connection..
+            HoloPortに接続しています...
           </v-card-title>
           <v-card-text>
             {{
               reconnectingIn === 0
-                ? "Connecting..."
-                : `Retrying in ${reconnectingIn} seconds...`
+                ? "接続しています..."
+                : `${reconnectingIn}秒後に接続を試みます...`
             }}</v-card-text
           >
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn text @click="retryNow">
-              Retry Now
+              リトライ
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -145,9 +144,9 @@ export default {
     },
     holoConnectionMessage() {
       if (this.isChaperoneDisconnected) {
-        return "Can't find HoloPort. Please check your internet connection and refresh this page.";
+        return "HoloPortが見つかりません。インターネット接続を確認してページを更新してください。";
       } else {
-        return "Connecting to HoloPort...";
+        return "HoloPortに接続しています...";
       }
     }
   },

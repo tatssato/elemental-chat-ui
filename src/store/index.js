@@ -188,6 +188,7 @@ const initializeAppLocal = (commit, dispatch, state) => {
           installed_app_id: INSTALLED_APP_ID
         })
         .then(appInfo => {
+          console.log(appInfo);
           clearStateIfDnaChanged(appInfo, commit, dispatch, state);
 
           const cellId = appInfo.cell_data[0][0];
